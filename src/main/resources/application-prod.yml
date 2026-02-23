@@ -1,0 +1,27 @@
+server:
+  port: 9000
+  forward-headers-strategy: framework
+
+spring:
+  security:
+    oauth2:
+      authorizationserver:
+        issuer: https://identity.company.com
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/identity
+    username: ${DB_USERNAME:identity}
+    password: ${DB_PASSWORD:identity}
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
